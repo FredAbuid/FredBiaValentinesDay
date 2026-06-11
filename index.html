@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Uma página especial para o Dia dos Namorados" />
+  <title>Para Você ❤️</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===================== CORAÇÕES FLUTUANTES (Canvas) ===================== -->
+  <canvas id="hearts-canvas" aria-hidden="true"></canvas>
+
+  <!-- ===================== NAVEGAÇÃO ===================== -->
+  <nav class="nav" id="nav">
+    <div class="nav__logo">❤️ Nossa História</div>
+    <button class="nav__menu-btn" id="menuBtn" aria-label="Abrir menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav__links" id="navLinks">
+      <li><a href="#hero" class="nav__link">Início</a></li>
+      <li><a href="#counter" class="nav__link">Contador</a></li>
+      <li><a href="#timeline" class="nav__link">Memórias</a></li>
+      <li><a href="#gallery" class="nav__link">Galeria</a></li>
+      <li><a href="#letters" class="nav__link">Cartas</a></li>
+      <li><a href="#reasons" class="nav__link">Por que te amo</a></li>
+      <li><a href="#playlist" class="nav__link">Playlist</a></li>
+      <li><a href="#quiz" class="nav__link">Quiz</a></li>
+    </ul>
+  </nav>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero" id="hero">
+    <div class="hero__bg-gradient"></div>
+    <div class="hero__content reveal-fade">
+      <span class="hero__eyebrow">Feliz Dia dos Namorados meu amor</span>
+      <h1 class="hero__title">
+        Você é o<br />
+        <em>meu lugar</em><br />
+        favorito
+      </h1>
+      <p class="hero__subtitle">
+        "Cada momento ao seu lado se tornou<br class="desktop-br" />
+        uma das minhas memórias favoritas ❤️"
+      </p>
+      <!-- Foto do casal (placeholder, troque pelo caminho da foto) -->
+      <div class="hero__photo-frame">
+        <div class="hero__photo">
+            <img src="images/amor_1.jpg" alt="Foto do casal"/>
+            <span class="hero__photo-icon"></span>
+            <small>Te amo googleplex</small>
+
+          <!-- Para usar uma foto real, substitua a div acima por:
+          <img src="fotos/casal.jpg" alt="Foto do casal" class="hero__photo-placeholder" /> -->
+        </div>
+        <div class="hero__photo-decoration hero__photo-decoration--1">❤️</div>
+        <div class="hero__photo-decoration hero__photo-decoration--2">✨</div>
+        <div class="hero__photo-decoration hero__photo-decoration--3">🌸</div>
+      </div>
+      <a href="#counter" class="btn btn--primary hero__cta">
+        <span>Começar Nossa História</span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+      </a>
+    </div>
+    <div class="hero__scroll-hint" aria-hidden="true">
+      <span></span>
+    </div>
+  </section>
+
+  <!-- ===================== CONTADOR ===================== -->
+  <section class="section counter-section" id="counter">
+    <div class="container">
+      <div class="section__header reveal-up">
+        <span class="section__eyebrow">Desde o primeiro dia</span>
+        <h2 class="section__title">Nosso Tempo Juntos</h2>
+        <p class="section__desc">Cada segundo ao seu lado é um presente.</p>
+      </div>
+      <div class="counter-grid reveal-up">
+        <div class="counter-card glass">
+          <span class="counter-card__number" id="cnt-years">00</span>
+          <span class="counter-card__label">Anos</span>
+        </div>
+        <div class="counter-card glass">
+          <span class="counter-card__number" id="cnt-months">00</span>
+          <span class="counter-card__label">Meses</span>
+        </div>
+        <div class="counter-card glass">
+          <span class="counter-card__number" id="cnt-days">00</span>
+          <span class="counter-card__label">Dias</span>
+        </div>
+        <div class="counter-card glass">
+          <span class="counter-card__number" id="cnt-hours">00</span>
+          <span class="counter-card__label">Horas</span>
+        </div>
+        <div class="counter-card glass">
+          <span class="counter-card__number" id="cnt-minutes">00</span>
+          <span class="counter-card__label">Minutos</span>
+        </div>
+        <div class="counter-card glass counter-card--highlight">
+          <span class="counter-card__number" id="cnt-seconds">00</span>
+          <span class="counter-card__label">Segundos</span>
+        </div>
+      </div>
+      <p class="counter-note reveal-up">
+        Juntos desde <strong id="counter-date-display">12 de junho de 2022</strong> 💕
+        <br /><small>Te amava sem saber <code>que</code> → <code>Te amava</code></small>
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================== LINHA DO TEMPO ===================== -->
+  <section class="section timeline-section" id="timeline">
+    <div class="container">
+      <div class="section__header reveal-up">
+        <span class="section__eyebrow">Nossa história</span>
+        <h2 class="section__title">Momentos Inesquecíveis</h2>
+        <p class="section__desc">Os capítulos mais bonitos da nossa vida.</p>
+      </div>
+      <div class="timeline">
+
+        <article class="timeline__item timeline__item--left reveal-left">
+          <div class="timeline__connector"></div>
+          <div class="timeline__card glass">
+            <div class="timeline__photo">
+              <img src="images/amor_2.JPEG" alt="Primeiro encontro" />
+            </div>
+            <div class="timeline__content">
+              <span class="timeline__date">05 de Novembro, 2022</span>
+              <h3 class="timeline__title">Primeiro Beijo</h3>
+              <p class="timeline__desc">Aquele momento mágico e um pouco constrangedor que parou o tempo ao nosso redor.</p>
+            </div>
+          </div>
+          <div class="timeline__dot"><span>💋</span></div>
+        </article>
+
+        <article class="timeline__item timeline__item--right reveal-right">
+            <div class="timeline__connector"></div>
+            <div class="timeline__card glass">
+             <div class="timeline__photo">
+                <img src="images/amor_3.JPEG" alt="Primeiro encontro" />
+              <!-- <img src="fotos/encontro.jpg" alt="Primeiro encontro" /> -->
+            </div>
+            <div class="timeline__content">
+              <span class="timeline__date">10 de Março, 2023</span>
+              <h3 class="timeline__title">Nosso Primeiro Encontro Formal como ficante</h3>
+              <p class="timeline__desc">O dia em que tudo começou. Uma beleza que eu nunca mais esqueci.</p>
+            </div>
+          </div>
+          <div class="timeline__dot"><span>❤️</span></div>
+        </article>
+
+        
+
+        <article class="timeline__item timeline__item--left reveal-left">
+          <div class="timeline__connector"></div>
+          <div class="timeline__card glass">
+            <div class="timeline__photo">
+              <img src="images/amor_4.jpg" alt="Pedido Namoro" />
+            </div>
+            <div class="timeline__content">
+              <span class="timeline__date">15 de julho, 2023</span>
+              <h3 class="timeline__title">Pedido de Namoro</h3>
+              <p class="timeline__desc">Oficialmente juntos. A melhor decisão da minha vida.</p>
+            </div>
+          </div>
+          <div class="timeline__dot"><span>💍</span></div>
+        </article>
+
+        <article class="timeline__item timeline__item--right reveal-right">
+          <div class="timeline__connector"></div>
+          <div class="timeline__card glass">
+            <div class="timeline__photo">
+              <img src="images/amor_5.JPEG" alt="Pedido Namoro" />
+            </div>
+            <div class="timeline__content">
+              <span class="timeline__date">15 de Julho, 2024</span>
+              <h3 class="timeline__title">Nosso 1° Aniversário</h3>
+              <p class="timeline__desc">Oficialmente 1 ano juntos. Muito amor e crescimento juntos.</p>
+            </div>
+          </div>
+          <div class="timeline__dot"><span>🎂</span></div>
+        </article>
+
+        <article class="timeline__item timeline__item--left reveal-left">
+          <div class="timeline__connector"></div>
+          <div class="timeline__card glass">
+            <div class="timeline__photo">
+              <img src="images/amor_6.jpg" alt="Primeira Viajem" />
+            </div>
+            <div class="timeline__content">
+              <span class="timeline__date">7 de Dezembro, 2024</span>
+              <h3 class="timeline__title">Primeira Viagem Juntos</h3>
+              <p class="timeline__desc">Primeira viajem pra São João, criando memórias pra vida toda.</p>
+            </div>
+          </div>
+          <div class="timeline__dot"><span>✈️</span></div>
+        </article>
+
+        <article class="timeline__item timeline__item--right reveal-right">
+          <div class="timeline__connector"></div>
+          <div class="timeline__card glass">
+            <div class="timeline__photo">
+              <div class="timeline__photo-placeholder">🎸</div>
+            </div>
+            <div class="timeline__content">
+              <span class="timeline__date">6 de Junho, 2026</span>
+              <h3 class="timeline__title">Show do Betinho </h3>
+              <p class="timeline__desc">Primeiro Show do Betinho de muitos outors shows que estão por vir.</p>
+            </div>
+          </div>
+          <div class="timeline__dot"><span>🎸</span></div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== GALERIA ===================== -->
+  <section class="section gallery-section" id="gallery">
+    <div class="container">
+      <div class="section__header reveal-up">
+        <span class="section__eyebrow">Nossos momentos</span>
+        <h2 class="section__title">Galeria de Memórias</h2>
+        <p class="section__desc">Cada foto conta uma história que guardo no coração.</p>
+      </div>
+      <div class="gallery-grid reveal-up">
+        <!-- 20 itens da galeria com placeholders -->
+        <div class="gallery-item gallery-item--wide" data-index="0" tabindex="0" role="button" aria-label="Abrir foto 1">
+          <div class="gallery-item__inner"><span class="gallery-placeholder-icon">📸</span><span>Foto 1</span></div>
+          <!-- <img src="fotos/1.jpg" alt="Memória 1" loading="lazy" /> -->
+          <div class="gallery-item__overlay"><span class="gallery-item__zoom">🔍</span></div>
+        </div>
+        <div class="gallery-item" data-index="1" tabindex="0" role="button" aria-label="Abrir foto 2">
+          <div class="gallery-item__inner"><span class="gallery-placeholder-icon">📸</span><span>Foto 2</span></div>
+          <div class="gallery-item__overlay"><span class="gallery-item__zoom">🔍</span></div>
+        </div>
+        <div class="gallery-item" data-index="2" tabindex="0" role="button" aria-label="Abrir foto 3">
+          <div class="gallery-item__inner"><span class="gallery-placeholder-icon">📸</span><span>Foto 3</span></div>
+          <div class="gallery-item__overlay"><span class="gallery-item__zoom">🔍</span></div>
+        </div>
+        <div class="gallery-item gallery-item--tall" data-index="3" tabindex="0" role="button" aria-label="Abrir foto 4">
+          <div class="gallery-item__inner"><span class="gallery-placeholder-icon">📸</span><span>Foto 4</span></div>
+          <div class="gallery-item__overlay"><span class="gallery-item__zoom">🔍</span></div>
+        </div>
+        <div class="gallery-item" data-index="4" tabindex="0" role="button" aria-label="Abrir foto 5">
+          <div class="gallery-item__inner"><span class="gallery-placeholder-icon">📸</span><span>Foto 5</span></div>
+          <div class="gallery-item__overlay"><span class="gallery-item__zoom">🔍</span></div>
+        </div>
+        <div class="gallery-item" data-index="5" tabindex="0" role="button" aria-label="Abrir foto 6">
+          <div class="gallery-item__inner"><span class="gallery-placeholder-icon">📸</span><span>Foto 6</span></div>
+          <div class="gallery-item__overlay"><span class="gallery-item__zoom">🔍</span></div>
+        </div>
+        <div class="gallery-item gallery-item--wide" data-index="6" tabindex="0" role="button" aria-label="Abrir foto 7">
+          <div class="gallery-item__inner"><span class="gallery-placeholder-icon">📸</span><span>Foto 7</span></div>
+          <div class="gallery-item__overlay"><span class="gallery-item__zoom">🔍</span></div>
+        </div>
+        <div class="gallery-item" data-index="7" tabindex="0" role="button" aria-label="Abrir foto 8">
+          <div class="gallery-item__inner"><span class="gallery-placeholder-icon">📸</span><span>Foto 8</span></div>
+          <div class="gallery-item__overlay"><span class="gallery-item__zoom">🔍</span></div>
+        </div>
+        <div class="gallery-item" data-index="8" tabindex="0" role="button" aria-label="Abrir foto 9">
+          <div class="gallery-item__inner"><span class="gallery-placeholder-icon">📸</span><span>Foto 9</span></div>
+          <div class="gallery-item__overlay"><span class="gallery-item__zoom">🔍</span></div>
+        </div>
+        <div class="gallery-item gallery-item--tall" data-index="9" tabindex="0" role="button" aria-label="Abrir foto 10">
+          <div class="gallery-item__inner"><span class="gallery-placeholder-icon">📸</span><span>Foto 10</span></div>
+          <div class="gallery-item__overlay"><span class="gallery-item__zoom">🔍</span></div>
+        </div>
+        <div class="gallery-item" data-index="10" tabindex="0" role="button" aria-label="Abrir foto 11">
+          <div class="gallery-item__inner"><span class="gallery-placeholder-icon">📸</span><span>Foto 11</span></div>
+          <div class="gallery-item__overlay"><span class="gallery-item__zoom">🔍</span></div>
+        </div>
+        <div class="gallery-item" data-index="11" tabindex="0" role="button" aria-label="Abrir foto 12">
+          <div class="gallery-item__inner"><span class="gallery-placeholder-icon">📸</span><span>Foto 12</span></div>
+          <div class="gallery-item__overlay"><span class="gallery-item__zoom">🔍</span></div>
+        </div>
+        <div class="gallery-item gallery-item--wide" data-index="12" tabindex="0" role="button" aria-label="Abrir foto 13">
+          <div class="gallery-item__inner"><span class="gallery-placeholder-icon">📸</span><span>Foto 13</span></div>
+          <div class="gallery-item__overlay"><span class="gallery-item__zoom">🔍</span></div>
+        </div>
+        <div class="gallery-item" data-index="13" tabindex="0" role="button" aria-label="Abrir foto 14">
+          <div class="gallery-item__inner"><span class="gallery-placeholder-icon">📸</span><span>Foto 14</span></div>
+          <div class="gallery-item__overlay"><span class="gallery-item__zoom">🔍</span></div>
+        </div>
+        <div class="gallery-item" data-index="14" tabindex="0" role="button" aria-label="Abrir foto 15">
+          <div class="gallery-item__inner"><span class="gallery-placeholder-icon">📸</span><span>Foto 15</span></div>
+          <div class="gallery-item__overlay"><span class="gallery-item__zoom">🔍</span></div>
+        </div>
+        <div class="gallery-item" data-index="15" tabindex="0" role="button" aria-label="Abrir foto 16">
+          <div class="gallery-item__inner"><span class="gallery-placeholder-icon">📸</span><span>Foto 16</span></div>
+          <div class="gallery-item__overlay"><span class="gallery-item__zoom">🔍</span></div>
+        </div>
+        <div class="gallery-item gallery-item--tall" data-index="16" tabindex="0" role="button" aria-label="Abrir foto 17">
+          <div class="gallery-item__inner"><span class="gallery-placeholder-icon">📸</span><span>Foto 17</span></div>
+          <div class="gallery-item__overlay"><span class="gallery-item__zoom">🔍</span></div>
+        </div>
+        <div class="gallery-item" data-index="17" tabindex="0" role="button" aria-label="Abrir foto 18">
+          <div class="gallery-item__inner"><span class="gallery-placeholder-icon">📸</span><span>Foto 18</span></div>
+          <div class="gallery-item__overlay"><span class="gallery-item__zoom">🔍</span></div>
+        </div>
+        <div class="gallery-item" data-index="18" tabindex="0" role="button" aria-label="Abrir foto 19">
+          <div class="gallery-item__inner"><span class="gallery-placeholder-icon">📸</span><span>Foto 19</span></div>
+          <div class="gallery-item__overlay"><span class="gallery-item__zoom">🔍</span></div>
+        </div>
+        <div class="gallery-item gallery-item--wide" data-index="19" tabindex="0" role="button" aria-label="Abrir foto 20">
+          <div class="gallery-item__inner"><span class="gallery-placeholder-icon">📸</span><span>Foto 20</span></div>
+          <div class="gallery-item__overlay"><span class="gallery-item__zoom">🔍</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIGHTBOX da galeria -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Visualizar foto">
+    <button class="lightbox__close" id="lightboxClose" aria-label="Fechar">✕</button>
+    <button class="lightbox__nav lightbox__nav--prev" id="lightboxPrev" aria-label="Anterior">‹</button>
+    <div class="lightbox__content">
+      <div class="lightbox__placeholder" id="lightboxImg">📸</div>
+      <!-- Quando usar imagens reais: <img id="lightboxImg" src="" alt="" /> -->
+      <p class="lightbox__caption" id="lightboxCaption">Foto 1</p>
+    </div>
+    <button class="lightbox__nav lightbox__nav--next" id="lightboxNext" aria-label="Próxima">›</button>
+  </div>
+
+  <!-- ===================== CARTAS DE AMOR ===================== -->
+  <section class="section letters-section" id="letters">
+    <div class="container">
+      <div class="section__header reveal-up">
+        <span class="section__eyebrow">Do meu coração para você</span>
+        <h2 class="section__title">Cartas de Amor</h2>
+        <p class="section__desc">Clique em cada envelope para ler sua carta especial.</p>
+      </div>
+      <div class="letters-grid">
+
+        <div class="envelope reveal-up" data-letter="0">
+          <div class="envelope__outer">
+            <div class="envelope__flap"></div>
+            <div class="envelope__body">
+              <div class="envelope__seal">❤️</div>
+              <p class="envelope__hint">Clique para abrir</p>
+            </div>
+          </div>
+          <div class="letter__content glass">
+            <h3 class="letter__title">Carta I — Para Você</h3>
+            <p class="letter__text">
+              Quando te encontrei, percebi que toda a minha vida estava apenas me preparando para esse momento.
+              Você chegou trazendo leveza onde havia peso, luz onde havia sombra.
+              Cada dia ao seu lado é um presente que não sabia que merecia.
+            </p>
+            <span class="letter__signature">Com todo meu amor ❤️</span>
+          </div>
+        </div>
+
+        <div class="envelope reveal-up" data-letter="1" style="animation-delay: 0.15s;">
+          <div class="envelope__outer">
+            <div class="envelope__flap"></div>
+            <div class="envelope__body">
+              <div class="envelope__seal">💌</div>
+              <p class="envelope__hint">Clique para abrir</p>
+            </div>
+          </div>
+          <div class="letter__content glass">
+            <h3 class="letter__title">Carta II — Meu Lar</h3>
+            <p class="letter__text">
+              Lar não é um lugar — é uma sensação. E sempre que estou com você, estou em casa.
+              Você é meu lar, minha calma, meu porto seguro. Você é o lugar onde eu quero sempre voltar.
+            </p>
+            <span class="letter__signature">Sempre seu ❤️</span>
+          </div>
+        </div>
+
+        <div class="envelope reveal-up" data-letter="2" style="animation-delay: 0.3s;">
+          <div class="envelope__outer">
+            <div class="envelope__flap"></div>
+            <div class="envelope__body">
+              <div class="envelope__seal">🌹</div>
+              <p class="envelope__hint">Clique para abrir</p>
+            </div>
+          </div>
+          <div class="letter__content glass">
+            <h3 class="letter__title">Carta III — Promessa</h3>
+            <p class="letter__text">
+              Prometo estar presente nos dias de sol e nos dias de chuva.
+              Prometo ser o colo quando você precisar, a risada quando quiser se distrair, e o silêncio
+              aconchegante quando apenas minha presença for o suficiente.
+            </p>
+            <span class="letter__signature">Para sempre ❤️</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== MOTIVOS PELOS QUAIS TE AMO ===================== -->
+  <section class="section reasons-section" id="reasons">
+    <div class="container">
+      <div class="section__header reveal-up">
+        <span class="section__eyebrow">Infinitas razões</span>
+        <h2 class="section__title">Por Que Eu Te Amo</h2>
+        <p class="section__desc">Clique em cada coração para descobrir.</p>
+      </div>
+      <div class="reasons-grid">
+
+        <div class="reason-card glass reveal-up" data-reason="0">
+          <div class="reason-card__front">
+            <span class="reason-card__icon">😊</span>
+            <h3 class="reason-card__title">Seu Sorriso</h3>
+          </div>
+          <div class="reason-card__back">
+            <p>Seu sorriso ilumina qualquer sala. Quando você sorri pra mim, é como se o mundo inteiro desaparecesse.</p>
+          </div>
+        </div>
+
+        <div class="reason-card glass reveal-up" data-reason="1" style="animation-delay:0.1s">
+          <div class="reason-card__front">
+            <span class="reason-card__icon">🤗</span>
+            <h3 class="reason-card__title">Seu Carinho</h3>
+          </div>
+          <div class="reason-card__back">
+            <p>A forma como você cuida das pessoas ao seu redor me faz querer ser uma pessoa melhor todos os dias.</p>
+          </div>
+        </div>
+
+        <div class="reason-card glass reveal-up" data-reason="2" style="animation-delay:0.2s">
+          <div class="reason-card__front">
+            <span class="reason-card__icon">🌟</span>
+            <h3 class="reason-card__title">Sua Companhia</h3>
+          </div>
+          <div class="reason-card__back">
+            <p>Qualquer lugar se torna especial quando você está comigo. Até o trajeto mais comum vira aventura.</p>
+          </div>
+        </div>
+
+        <div class="reason-card glass reveal-up" data-reason="3" style="animation-delay:0.3s">
+          <div class="reason-card__front">
+            <span class="reason-card__icon">💫</span>
+            <h3 class="reason-card__title">Seu Jeito Único</h3>
+          </div>
+          <div class="reason-card__back">
+            <p>Não existe ninguém no mundo como você. Essa unicidade é o que mais me fascina em você.</p>
+          </div>
+        </div>
+
+        <div class="reason-card glass reveal-up" data-reason="4" style="animation-delay:0.4s">
+          <div class="reason-card__front">
+            <span class="reason-card__icon">🧠</span>
+            <h3 class="reason-card__title">Sua Inteligência</h3>
+          </div>
+          <div class="reason-card__back">
+            <p>A forma como você se impenha e se destaca me deixa muito orgulhoso pode acreditar, você vai longe e sabe disso</p>
+          </div>
+        </div>
+
+        <div class="reason-card glass reveal-up" data-reason="5" style="animation-delay:0.5s">
+          <div class="reason-card__front">
+            <span class="reason-card__icon">😂</span>
+            <h3 class="reason-card__title">Seu Humor</h3>
+          </div>
+          <div class="reason-card__back">
+            <p>Você tem o dom de transformar qualquer dia difícil em motivo de riso. Por mais que as vezes eu finjo não gostar.</p>
+          </div>
+        </div>
+
+        <div class="reason-card glass reveal-up" data-reason="6" style="animation-delay:0.6s">
+          <div class="reason-card__front">
+            <span class="reason-card__icon">💪</span>
+            <h3 class="reason-card__title">Sua Força</h3>
+          </div>
+          <div class="reason-card__back">
+            <p>A forma como você é esforçada independente da ocasião me inspira muito, se sou como sou você tem envolvimento</p>
+          </div>
+        </div>
+
+        <div class="reason-card glass reveal-up" data-reason="7" style="animation-delay:0.7s">
+          <div class="reason-card__front">
+            <span class="reason-card__icon">🌺</span>
+            <h3 class="reason-card__title">Sua Delicadeza</h3>
+          </div>
+          <div class="reason-card__back">
+            <p>Você trata as pessoas e as coisas com tanto cuidado até demais. Essa gentileza sua é rara e preciosa.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PLAYLIST ===================== -->
+<section class="section playlist-section" id="playlist">
+  <div class="container">
+    <div class="section__header reveal-up">
+      <span class="section__eyebrow">As trilhas do nosso amor</span>
+      <h2 class="section__title">Nossa Playlist</h2>
+      <p class="section__desc">Cada música conta um capítulo da nossa história.</p>
+    </div>
+
+    <div class="playlist-layout reveal-up">
+
+      <!-- ===== CARD ESTILO SPOTIFY ===== -->
+      <div class="sp-card">
+
+        <!-- Topo: logo + barcode -->
+        <div class="sp-card__top">
+          <div class="sp-card__logo">
+            <svg class="sp-logo-icon" viewBox="0 0 168 168" aria-label="Spotify">
+              <path d="M84 0C37.6 0 0 37.6 0 84s37.6 84 84 84 84-37.6 84-84S130.4 0 84 0zm38.6 121.2c-1.5 2.5-4.8 3.3-7.3 1.8-20-12.2-45.2-15-74.9-8.2-2.9.7-5.7-1.1-6.4-4-.7-2.9 1.1-5.7 4-6.4 32.5-7.4 60.4-4.2 82.9 9.5 2.5 1.5 3.3 4.8 1.8 7.3zm10.3-22.9c-1.9 3.1-6 4.1-9.1 2.2-22.9-14.1-57.8-18.2-84.9-9.9-3.5 1-7.1-.9-8.1-4.4-1-3.5.9-7.1 4.4-8.1 31-9.4 69.5-4.9 96.1 11.4 3 1.8 4 5.9 2.2 9zm.9-23.8c-27.5-16.3-72.9-17.8-99.2-9.9-4.2 1.3-8.6-1.1-9.9-5.3-1.3-4.2 1.1-8.6 5.3-9.9 30.1-9.1 80.2-7.4 111.9 11.4 3.8 2.2 5 7.1 2.8 10.8-2.2 3.7-7.1 5-10.8 2.8z"/>
+            </svg>
+            <div class="sp-card__barcode" id="spBarcode"></div>
+          </div>
+        </div>
+
+        <!-- Foto do casal -->
+        <div class="sp-card__photo-wrap" id="spPhotoWrap">
+          <!-- Placeholder (some quando foto é carregada) -->
+          <div class="sp-card__photo-placeholder" id="spPhotoPlaceholder">
+            <label for="spFileInput" class="sp-card__photo-upload-label">
+              <span class="sp-card__photo-icon">📸</span>
+              <span class="sp-card__photo-text">Adicione a foto de vocês</span>
+              <span class="sp-card__photo-hint">Clique para selecionar</span>
+            </label>
+          </div>
+          <!-- Imagem real (inserida via JS) -->
+          <img class="sp-card__photo-img" id="spPhotoImg" src="" alt="Foto do casal" style="display:none;" />
+          <!-- Botão de trocar foto (aparece após upload) -->
+          <label for="spFileInput" class="sp-card__photo-change" id="spPhotoChange" style="display:none;">
+            📷 Trocar foto
+          </label>
+          <input type="file" id="spFileInput" accept="image/*" aria-label="Carregar foto do casal" />
+        </div>
+
+        <!-- Info da música tocando -->
+        <div class="sp-card__info">
+          <div class="sp-card__track">
+            <div>
+              <span class="sp-card__track-name" id="spTrackName">Selecione uma música</span>
+              <span class="sp-card__track-artist" id="spTrackArtist">Nossa Playlist</span>
+            </div>
+            <div class="sp-card__track-right">
+              <div class="sp-card__eq" id="spEq" aria-hidden="true">
+                <span></span><span></span><span></span>
+              </div>
+              <button class="sp-card__heart" id="spHeart" aria-label="Curtir">♥</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Barra de progresso -->
+        <div class="sp-card__progress-wrap">
+          <span class="sp-card__time" id="spCurrentTime">0:00</span>
+          <div class="sp-card__progress" id="spProgress" role="progressbar" aria-label="Progresso">
+            <div class="sp-card__progress-fill" id="spProgressFill"></div>
+          </div>
+          <span class="sp-card__time" id="spDuration">0:00</span>
+        </div>
+
+        <!-- Controles -->
+        <div class="sp-card__controls">
+          <button class="sp-card__ctrl" aria-label="Aleatório">⇌</button>
+          <button class="sp-card__ctrl" id="spPrev" aria-label="Anterior">⏮</button>
+          <button class="sp-card__ctrl sp-card__ctrl--play" id="spPlayPause" aria-label="Play/Pause">▶</button>
+          <button class="sp-card__ctrl" id="spNext" aria-label="Próxima">⏭</button>
+          <button class="sp-card__ctrl" aria-label="Repetir">↻</button>
+        </div>
+
+      </div>
+      <!-- /sp-card -->
+
+      <!-- ===== LISTA DE MÚSICAS ===== -->
+      <div class="sp-playlist">
+        <div class="sp-playlist__header glass">
+          <div class="sp-playlist__now-playing">
+            <div class="sp-playlist__cover" id="playerCover">🎵</div>
+            <div class="sp-playlist__info">
+              <span class="sp-playlist__track-name" id="playerTitle">Selecione uma música</span>
+              <span class="sp-playlist__artist" id="playerArtist">Nossa Playlist</span>
+            </div>
+          </div>
+          <!-- Player HTML5 -->
+          <audio id="audioPlayer" controls style="display:none;"></audio>
+        </div>
+        <ul class="sp-playlist__list">
+          <li class="sp-playlist__item" data-index="0" data-src="" data-title="3 X 4" data-artist="Engenheiros Do Hawaii" data-cover="🎸" >
+            <span class="sp-playlist__item-num">01</span>
+            <span class="sp-playlist__item-cover">🎸</span>
+            <div class="sp-playlist__item-info">
+              <span class="sp-playlist__item-title">3 X 4</span>
+              <span class="sp-playlist__item-artist">Engenheiros Do Hawaii</span>
+            </div>
+            <span class="sp-playlist__item-duration">3:09</span>
+          </li>
+          <li class="sp-playlist__item" data-index="1" data-src="" data-title="Amor de Fim de Noite" data-artist="Orochi" data-cover="🎶">
+            <span class="sp-playlist__item-num">02</span>
+            <span class="sp-playlist__item-cover">🎶</span>
+            <div class="sp-playlist__item-info">
+              <span class="sp-playlist__item-title">Amor de Fim de Noite</span>
+              <span class="sp-playlist__item-artist">Orochi</span>
+            </div>
+            <span class="sp-playlist__item-duration">3:41</span>
+          </li>
+          <li class="sp-playlist__item" data-index="2" data-src="" data-title="Te Amar de Mais" data-artist="Sodré" data-cover="🌹">
+            <span class="sp-playlist__item-num">03</span>
+            <span class="sp-playlist__item-cover">🌹</span>
+            <div class="sp-playlist__item-info">
+              <span class="sp-playlist__item-title">Te Amar Demais</span>
+              <span class="sp-playlist__item-artist">Sodré</span>
+            </div>
+            <span class="sp-playlist__item-duration">2:11</span>
+          </li>
+          <li class="sp-playlist__item" data-index="3" data-src="" data-title="Eu Amo Você" data-artist="Tim Maia" data-cover="💕">
+            <span class="sp-playlist__item-num">04</span>
+            <span class="sp-playlist__item-cover">💕</span>
+            <div class="sp-playlist__item-info">
+              <span class="sp-playlist__item-title">Eu Amo Você</span>
+              <span class="sp-playlist__item-artist">Tim Maia</span>
+            </div>
+            <span class="sp-playlist__item-duration">4:03</span>
+          </li>
+          <li class="sp-playlist__item" data-index="4" data-src="" data-title="Te Amo Desgraça" data-artist="Baco Exu do Blues" data-cover="🎹">
+            <span class="sp-playlist__item-num">05</span>
+            <span class="sp-playlist__item-cover">🎹</span>
+            <div class="sp-playlist__item-info">
+              <span class="sp-playlist__item-title">Te Amo Desgraça</span>
+              <span class="sp-playlist__item-artist">Baco Exu do Blues</span>
+            </div>
+            <span class="sp-playlist__item-duration">4:50</span>
+          </li>
+        </ul>
+      </div>
+      <!-- /sp-playlist -->
+
+    </div>
+    <!-- /playlist-layout -->
+  </div>
+</section>
+  <!-- ===================== MURAL DE MEMÓRIAS (Polaroid) ===================== -->
+  <section class="section polaroid-section" id="polaroid">
+    <div class="container">
+      <div class="section__header reveal-up">
+        <span class="section__eyebrow">Nosso mural</span>
+        <h2 class="section__title">Memórias Polaroid</h2>
+        <p class="section__desc">Fotos espalhadas, histórias guardadas.</p>
+      </div>
+      <div class="polaroid-board reveal-up">
+        <div class="polaroid polaroid--rot-2">
+          <div class="polaroid__photo"><span>📸</span></div>
+          <!-- <img src="fotos/polaroid1.jpg" alt="Memória" /> -->
+          <p class="polaroid__caption">Aquele dia especial 💕</p>
+          <span class="polaroid__date">Jun 2022</span>
+        </div>
+        <div class="polaroid polaroid--rot-neg3">
+          <div class="polaroid__photo"><span>📸</span></div>
+          <p class="polaroid__caption">Rindo à toa ☺️</p>
+          <span class="polaroid__date">Jul 2022</span>
+        </div>
+        <div class="polaroid polaroid--rot-1">
+          <div class="polaroid__photo"><span>📸</span></div>
+          <p class="polaroid__caption">Nossa primeira viagem ✈️</p>
+          <span class="polaroid__date">Dez 2022</span>
+        </div>
+        <div class="polaroid polaroid--rot-neg2">
+          <div class="polaroid__photo"><span>📸</span></div>
+          <p class="polaroid__caption">Meu lugar favorito 🏠</p>
+          <span class="polaroid__date">Jan 2023</span>
+        </div>
+        <div class="polaroid polaroid--rot-3">
+          <div class="polaroid__photo"><span>📸</span></div>
+          <p class="polaroid__caption">Pôr do sol juntos 🌅</p>
+          <span class="polaroid__date">Mar 2023</span>
+        </div>
+        <div class="polaroid polaroid--rot-neg1">
+          <div class="polaroid__photo"><span>📸</span></div>
+          <p class="polaroid__caption">1 ano de amor 🎂</p>
+          <span class="polaroid__date">Jun 2023</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== MENSAGEM ESPECIAL (Typewriter) ===================== -->
+  <section class="section message-section" id="message">
+    <div class="container container--narrow">
+      <div class="section__header reveal-up">
+        <span class="section__eyebrow">Minhas palavras para você</span>
+        <h2 class="section__title">Mensagem Especial</h2>
+      </div>
+      <div class="message-card glass reveal-up">
+        <div class="message-card__decoration" aria-hidden="true">❤️</div>
+        <div class="message-card__text" id="typewriterTarget" aria-live="polite">
+          <!-- Texto inserido via JS (efeito typewriter) -->
+        </div>
+        <div class="message-card__full-text" id="fullMessageText" style="display:none">
+          Amor,<br/><br/>
+          Não dou muitas cartinhas então valoriza essa viu, vou falar do fundo do meu coração.
+          Vamos Lá!<br/><br/>
+          Desde que você entrou na minha vida, aprendi o que significa acordar com vontade de sorrir.
+          Aprendi que o silêncio pode ser confortável quando é com a pessoa certa. Aprendi que
+          amor de verdade não é perfeição — é escolher o outro todo dia, nos dias bonitos e nos dias difíceis.<br/><br/>
+          Você me ensinou que sou capaz de amar mais do que eu imaginava. E por isso, hoje e sempre,
+          quero que saiba: você é a melhor parte de tudo o que sou.<br/><br/>
+          Sei que passamos por momentos complicados, mas cada desafio só reforçou o quanto somos fortes juntos.
+          E eu não trocaria nossa história por nada nesse mundo.<br/><br/>
+          Feliz Dia dos Namorados, meu amorzinho.<br/><br/>
+          Com todo o amor que existe no mundo ao quadrado ❤️
+        </div>
+        <button class="btn btn--outline message-card__btn" id="typewriterBtn">
+          Ler a mensagem completa ❤️
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== QUIZ ===================== -->
+  <section class="section quiz-section" id="quiz">
+    <div class="container container--narrow">
+      <div class="section__header reveal-up">
+        <span class="section__eyebrow">Me teste!</span>
+        <h2 class="section__title">Quiz do Casal</h2>
+        <p class="section__desc">Você me conhece bem? Vamos descobrir!</p>
+      </div>
+      <div class="quiz-card glass reveal-up">
+        <!-- Estado: jogando -->
+        <div id="quizPlaying">
+          <div class="quiz__progress">
+            <div class="quiz__progress-bar" id="quizProgressBar" style="width:0%"></div>
+          </div>
+          <p class="quiz__counter" id="quizCounter">Pergunta 1 de 5</p>
+          <h3 class="quiz__question" id="quizQuestion">Carregando...</h3>
+          <div class="quiz__options" id="quizOptions"></div>
+        </div>
+        <!-- Estado: resultado -->
+        <div id="quizResult" style="display:none">
+          <div class="quiz__result-icon" id="quizResultIcon">🏆</div>
+          <h3 class="quiz__result-title" id="quizResultTitle">Parabéns!</h3>
+          <p class="quiz__result-score" id="quizResultScore"></p>
+          <p class="quiz__result-msg" id="quizResultMsg"></p>
+          <button class="btn btn--primary" id="quizRestart">Jogar novamente 🔄</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SEÇÃO SECRETA ===================== -->
+  <section class="secret-section" id="secretSection" aria-hidden="true">
+    <canvas id="confettiCanvas" aria-hidden="true"></canvas>
+    <div class="secret-section__content glass">
+      <div class="secret-section__hearts" id="secretHearts" aria-hidden="true"></div>
+      <span class="secret-section__badge">🔓 Desbloqueado!</span>
+      <h2 class="secret-section__title">Você chegou até aqui!</h2>
+      <p class="secret-section__msg">
+        Isso significa que você leu cada palavra, cada memória, cada motivo pelo qual eu te amo.
+        Obrigado por ser tão especial. Você merece todo o amor do mundo — e eu vou te dar o meu.
+      </p>
+      <div class="secret-section__emoji" aria-hidden="true">❤️💕🌹✨💌</div>
+      <button class="btn btn--primary" id="secretClose">
+        Continuar ❤️
+      </button>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer">
+    <div class="footer__hearts" aria-hidden="true">
+      <span>❤️</span><span>💕</span><span>🌹</span><span>💌</span><span>✨</span>
+    </div>
+    <div class="container">
+      <div class="footer__content">
+        <p class="footer__quote">
+          "Obrigado por transformar meus dias em algo muito mais bonito ❤️"
+        </p>
+        <p class="footer__date">12 de Junho — Dia dos Namorados</p>
+        <p class="footer__signature">Feito com ❤️ especialmente para você</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
