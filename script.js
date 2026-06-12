@@ -446,19 +446,15 @@ function initReasonCards() {
 
 
 /* =============================================================================
-   8. PLAYLIST — player HTML5 com play/pause, próxima/anterior, progresso
-   Funciona com áudio real (defina data-src="" no HTML). Sem áudio, simula
-   uma reprodução visual para manter a experiência bonita.
-   -------------------------------------------------------------------------- */
+   8. PLAYLIST — substitua as funções initPlaylist() e initPlaylistExtras()
+   no seu script.js por este bloco completo.
+   ============================================================================= */
 function initPlaylist() {
   const audio = $('#audioPlayer');
-  // Faixas da lista (estrutura nova: .sp-playlist__item)
   const items = $$('.sp-playlist__item');
-  if (!audio || !items.length) return;
+  if (!items.length) return;
 
-  // Elementos do card estilo Spotify + da lista
   const ui = {
-    // Card (player principal)
     trackName: $('#spTrackName'),
     artist:    $('#spTrackArtist'),
     eq:        $('#spEq'),
@@ -469,15 +465,12 @@ function initPlaylist() {
     duration:  $('#spDuration'),
     progress:  $('#spProgress'),
     bar:       $('#spProgressFill'),
-    // Cabeçalho da lista (espelha a música atual)
-    listCover:  $('#playerCover'),
-    listTitle:  $('#playerTitle'),
-    listArtist: $('#playerArtist')
+    photo:     $('#spPhotoImg')   // <-- foto do card
   };
 
-  let current = -1;
+  let current = 0;   // começa na primeira já selecionada
   let isPlaying = false;
-  let simTimer = null;    // timer usado quando NÃO há arquivo de áudio
+  let simTimer = null;
   let simElapsed = 0;
   let simTotal = 0;
 
@@ -488,13 +481,11 @@ function initPlaylist() {
     return `${m}:${String(sec).padStart(2, '0')}`;
   };
 
-  // Converte "4:23" → 263 segundos (para o modo simulado)
   function parseDuration(text) {
     const parts = (text || '0:00').split(':').map(Number);
     return (parts[0] || 0) * 60 + (parts[1] || 0);
   }
 
-  // Marca visualmente a faixa selecionada na lista (classe .active)
   const setActiveItem = (index) => {
     items.forEach((it, i) => it.classList.toggle('active', i === index));
   };
@@ -509,7 +500,19 @@ function initPlaylist() {
     if (simTimer) { clearInterval(simTimer); simTimer = null; }
   };
 
-  const setProgress = (pct) => { if (ui.bar) ui.bar.style.width = pct + '%'; };
+  const setProgress = (pct) => {
+    if (ui.bar) ui.bar.style.width = pct + '%';
+  };
+
+  // Troca a foto do card com uma pequena transição de fade
+  function updatePhoto(src) {
+    if (!ui.photo || !src) return;
+    ui.photo.style.opacity = '0';
+    setTimeout(() => {
+      ui.photo.src = src;
+      ui.photo.style.opacity = '1';
+    }, 180);
+  }
 
   function load(index, autoplay = true) {
     if (index < 0 || index >= items.length) return;
@@ -518,29 +521,30 @@ function initPlaylist() {
 
     setActiveItem(index);
 
-    // Atualiza o card principal
+    // Atualiza texto do card
     if (ui.trackName) ui.trackName.textContent = data.title  || 'Sem título';
     if (ui.artist)    ui.artist.textContent    = data.artist || '';
-    // Espelha no cabeçalho da lista
-    if (ui.listTitle)  ui.listTitle.textContent  = data.title  || 'Sem título';
-    if (ui.listArtist) ui.listArtist.textContent = data.artist || '';
-    if (ui.listCover)  ui.listCover.textContent  = data.cover  || '🎵';
+
+    // Troca a foto do card pela foto da faixa
+    updatePhoto(data.photo);
 
     stopSimulation();
-    const src = data.src;
 
+    const src = data.src;
     if (src) {
-      // ----- Modo com áudio real -----
-      audio.src = src;
-      audio.load();
-      if (autoplay) audio.play().then(() => setPlayingUI(true)).catch(() => setPlayingUI(false));
+      // Modo com arquivo de áudio real
+      if (audio) {
+        audio.src = src;
+        audio.load();
+        if (autoplay) audio.play().then(() => setPlayingUI(true)).catch(() => setPlayingUI(false));
+      }
     } else {
-      // ----- Modo simulado (sem arquivo de áudio) -----
+      // Modo simulado (sem arquivo)
       const durEl = items[index].querySelector('.sp-playlist__item-duration');
-      simTotal = parseDuration(durEl ? durEl.textContent : '0:00');
+      simTotal   = parseDuration(durEl ? durEl.textContent : '0:00');
       simElapsed = 0;
       if (ui.duration) ui.duration.textContent = fmt(simTotal);
-      if (ui.curTime)  ui.curTime.textContent = '0:00';
+      if (ui.curTime)  ui.curTime.textContent  = '0:00';
       setProgress(0);
       if (autoplay) playSimulation();
     }
@@ -551,16 +555,14 @@ function initPlaylist() {
     stopSimulation();
     simTimer = setInterval(() => {
       simElapsed += 1;
-      if (simElapsed >= simTotal) { next(); return; }   // acabou → próxima
+      if (simElapsed >= simTotal) { next(); return; }
       if (ui.curTime) ui.curTime.textContent = fmt(simElapsed);
       setProgress(simElapsed / simTotal * 100);
     }, 1000);
   }
 
   function togglePlay() {
-    if (current === -1) { load(0); return; }            // nada tocando → começa a 1ª
-    const hasRealAudio = !!items[current].dataset.src;
-
+    const hasRealAudio = audio && items[current] && !!items[current].dataset.src;
     if (hasRealAudio) {
       if (audio.paused) audio.play().then(() => setPlayingUI(true)).catch(() => {});
       else { audio.pause(); setPlayingUI(false); }
@@ -573,10 +575,10 @@ function initPlaylist() {
   const next = () => load((current + 1) % items.length);
   const prev = () => load((current - 1 + items.length) % items.length);
 
-  // Clique em uma faixa da lista → seleciona e toca
+  // Clique em uma faixa da lista
   items.forEach((item, i) => {
     item.addEventListener('click', () => {
-      if (i === current) togglePlay();   // já é a atual → pausa/retoma
+      if (i === current) togglePlay();
       else load(i);
     });
   });
@@ -585,34 +587,64 @@ function initPlaylist() {
   if (ui.next) ui.next.addEventListener('click', next);
   if (ui.prev) ui.prev.addEventListener('click', prev);
 
-  // Eventos do <audio> (modo real)
-  audio.addEventListener('timeupdate', () => {
-    if (!audio.duration) return;
-    if (ui.curTime) ui.curTime.textContent = fmt(audio.currentTime);
-    setProgress(audio.currentTime / audio.duration * 100);
-  });
-  audio.addEventListener('loadedmetadata', () => {
-    if (ui.duration) ui.duration.textContent = fmt(audio.duration);
-  });
-  audio.addEventListener('ended', next);
-  audio.addEventListener('play',  () => setPlayingUI(true));
-  audio.addEventListener('pause', () => setPlayingUI(false));
-
-  // Clique na barra de progresso para "buscar" um trecho (somente áudio real)
-  if (ui.progress) {
-    ui.progress.addEventListener('click', (e) => {
-      const rect = ui.progress.getBoundingClientRect();
-      const ratio = (e.clientX - rect.left) / rect.width;
-      if (current !== -1 && items[current].dataset.src && audio.duration) {
-        audio.currentTime = ratio * audio.duration;
-      }
+  // Eventos do <audio>
+  if (audio) {
+    audio.addEventListener('timeupdate', () => {
+      if (!audio.duration) return;
+      if (ui.curTime) ui.curTime.textContent = fmt(audio.currentTime);
+      setProgress(audio.currentTime / audio.duration * 100);
     });
+    audio.addEventListener('loadedmetadata', () => {
+      if (ui.duration) ui.duration.textContent = fmt(audio.duration);
+    });
+    audio.addEventListener('ended', next);
+    audio.addEventListener('play',  () => setPlayingUI(true));
+    audio.addEventListener('pause', () => setPlayingUI(false));
+
+    if (ui.progress) {
+      ui.progress.addEventListener('click', (e) => {
+        const rect = ui.progress.getBoundingClientRect();
+        const ratio = (e.clientX - rect.left) / rect.width;
+        if (items[current].dataset.src && audio.duration) {
+          audio.currentTime = ratio * audio.duration;
+        }
+      });
+    }
   }
 
-  // ----- Extras do novo card -----
+  // Inicializa o card com a primeira faixa (sem autoplay)
+  load(0, false);
   initPlaylistExtras();
 }
 
+/* Apenas o código de barras e o botão de curtir — sem upload */
+function initPlaylistExtras() {
+  // Código de barras decorativo
+  const barcode = $('#spBarcode');
+  if (barcode && !barcode.childElementCount) {
+    const frag = document.createDocumentFragment();
+    for (let i = 0; i < 40; i++) {
+      const bar = document.createElement('span');
+      bar.style.height = (8 + Math.random() * 18) + 'px';
+      frag.appendChild(bar);
+    }
+    barcode.appendChild(frag);
+  }
+
+  // Botão curtir
+  const heart = $('#spHeart');
+  if (heart) {
+    heart.addEventListener('click', () => {
+      const liked = heart.dataset.liked === 'true';
+      heart.dataset.liked = String(!liked);
+      heart.textContent   = liked ? '♡' : '♥';
+      heart.style.color   = liked ? '' : '#ff4d6d';
+      heart.setAttribute('aria-pressed', String(!liked));
+    });
+  }
+}
+
+/* Recursos visuais do card Spotify: código de barras, foto e coração */
 /* Recursos visuais do card Spotify: código de barras, foto e coração */
 function initPlaylistExtras() {
   // Código de barras decorativo (barras verdes de alturas variadas)
@@ -627,21 +659,33 @@ function initPlaylistExtras() {
     barcode.appendChild(frag);
   }
 
-  // Upload da foto do casal
+  // Upload da foto do casal — ativa pelo input, pela imagem e pelo botão "Trocar"
   const fileInput   = $('#spFileInput');
   const photoImg    = $('#spPhotoImg');
   const placeholder = $('#spPhotoPlaceholder');
   const changeBtn   = $('#spPhotoChange');
-  if (fileInput && photoImg) {
-    fileInput.addEventListener('change', (e) => {
-      const file = e.target.files && e.target.files[0];
-      if (!file) return;
-      const url = URL.createObjectURL(file);
-      photoImg.src = url;
-      photoImg.style.display = 'block';
-      if (placeholder) placeholder.style.display = 'none';
-      if (changeBtn) changeBtn.style.display = '';
-    });
+  const photoWrap   = $('#spPhotoWrap');
+
+  function handlePhotoUpload(e) {
+    const file = e.target.files && e.target.files[0];
+    if (!file) return;
+    const url = URL.createObjectURL(file);
+    photoImg.src = url;
+    photoImg.style.display = 'block';
+    if (placeholder) placeholder.style.display = 'none';
+    if (changeBtn)   changeBtn.style.display = '';
+    // Reseta o input para permitir selecionar o mesmo arquivo novamente
+    fileInput.value = '';
+  }
+
+  if (fileInput) {
+    fileInput.addEventListener('change', handlePhotoUpload);
+  }
+
+  // Clique direto na imagem já carregada também abre o seletor
+  if (photoImg) {
+    photoImg.style.cursor = 'pointer';
+    photoImg.addEventListener('click', () => fileInput && fileInput.click());
   }
 
   // Botão de curtir (coração) — alterna estado visual
